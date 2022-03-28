@@ -189,15 +189,30 @@ class PhoneAndEmailSession extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             TextHeader(text: 'Phone Number:'),
-            TextInputCustom(hintText: 'Home Phone'),
-            TextInputCustom(hintText: 'Mobile Phone'),
-            TextInputCustom(hintText: 'Work Phone'),
+            TextInputCustom(
+              hintText: 'Home Phone',
+              type: TextInputType.phone,
+            ),
+            TextInputCustom(
+              hintText: 'Mobile Phone',
+              type: TextInputType.phone,
+            ),
+            TextInputCustom(
+              hintText: 'Work Phone',
+              type: TextInputType.phone,
+            ),
             SizedBox(
               height: 10,
             ),
             TextHeader(text: 'Email Address:'),
-            TextInputCustom(hintText: 'Primary Email'),
-            TextInputCustom(hintText: 'Alternative Email'),
+            TextInputCustom(
+              hintText: 'Primary Email',
+              type: TextInputType.emailAddress,
+            ),
+            TextInputCustom(
+              hintText: 'Alternative Email',
+              type: TextInputType.emailAddress,
+            ),
           ],
         ),
       ),
@@ -228,6 +243,7 @@ class SearchTagsSession extends StatelessWidget {
             TextInputCustom(
               hintText: 'e.g Company Name, Trade Service, Product Name',
               maxlines: 2,
+              type: TextInputType.text,
             ),
           ],
         ),
@@ -256,17 +272,26 @@ class TaxSession extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             TextHeader(text: 'Tax Region:'),
-            TextInputCustom(hintText: 'Tax Region'),
+            TextInputCustom(
+              hintText: 'Tax Region',
+              type: TextInputType.text,
+            ),
             SizedBox(
               height: 10,
             ),
             TextHeader(text: 'Tax Refference:'),
-            TextInputCustom(hintText: 'Tax Refference Code'),
+            TextInputCustom(
+              hintText: 'Tax Refference Code',
+              type: TextInputType.text,
+            ),
             SizedBox(
               height: 10,
             ),
             TextHeader(text: 'Invoice Terms:'),
-            TextInputCustom(hintText: 'Terms and Conditions'),
+            TextInputCustom(
+              hintText: 'Terms and Conditions',
+              type: TextInputType.text,
+            ),
             SizedBox(
               height: 10,
             ),
@@ -274,6 +299,7 @@ class TaxSession extends StatelessWidget {
             TextInputCustom(
               hintText: 'Notes to the Customer',
               maxlines: 2,
+              type: TextInputType.text,
             ),
           ],
         ),
@@ -302,13 +328,34 @@ class AddressSession extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             TextHeader(text: 'Address:'),
-            TextInputCustom(hintText: 'Address Line 1'),
-            TextInputCustom(hintText: 'Address Line 2'),
-            TextInputCustom(hintText: 'Street'),
-            TextInputCustom(hintText: 'Ward'),
-            TextInputCustom(hintText: 'City/ Region'),
-            TextInputCustom(hintText: 'Country'),
-            TextInputCustom(hintText: 'Postal Code'),
+            TextInputCustom(
+              hintText: 'Address Line 1',
+              type: TextInputType.streetAddress,
+            ),
+            TextInputCustom(
+              hintText: 'Address Line 2',
+              type: TextInputType.streetAddress,
+            ),
+            TextInputCustom(
+              hintText: 'Street',
+              type: TextInputType.streetAddress,
+            ),
+            TextInputCustom(
+              hintText: 'Ward',
+              type: TextInputType.streetAddress,
+            ),
+            TextInputCustom(
+              hintText: 'City/ Region',
+              type: TextInputType.streetAddress,
+            ),
+            TextInputCustom(
+              hintText: 'Country',
+              type: TextInputType.streetAddress,
+            ),
+            TextInputCustom(
+              hintText: 'Postal Code',
+              type: TextInputType.number,
+            ),
           ],
         ),
       ),

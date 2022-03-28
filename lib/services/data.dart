@@ -9,7 +9,6 @@ class DataContact {
     required this.phoneNumber,
     required this.email,
   });
-
   static List<DataContact> datacontacts = [
     DataContact(
         avatarImage: 'assets/images/a1.png',

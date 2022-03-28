@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class TextInputCustom extends StatelessWidget {
   final String hintText;
   final int? maxlines;
-  const TextInputCustom({Key? key, required this.hintText, this.maxlines})
+  final type;
+  const TextInputCustom(
+      {Key? key, required this.hintText, this.maxlines, required this.type})
       : super(key: key);
 
   @override
@@ -18,6 +20,7 @@ class TextInputCustom extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)),
         child: TextField(
           maxLines: maxlines ?? 1,
+          keyboardType: type,
           decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
