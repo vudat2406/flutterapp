@@ -8,12 +8,7 @@ class BottomBar extends StatelessWidget {
   final TabItem fab;
 
   const BottomBar(
-      {Key? key,
-      required this.tab1,
-      required this.tab2,
-      required this.tab3,
-      required this.tab4,
-      required this.fab})
+      {Key key, this.tab1, this.tab2, this.tab3, this.tab4, this.fab})
       : super(key: key);
 
   @override
@@ -80,7 +75,7 @@ class BottomBar extends StatelessWidget {
 class TabCard extends StatelessWidget {
   final int annouceCount = 15;
   final TabItem item;
-  const TabCard({Key? key, required this.item}) : super(key: key);
+  const TabCard({Key key, this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -120,8 +115,8 @@ class TabCard extends StatelessWidget {
                 ),
                 item.name != null
                     ? Text(
-                        '${item.name}',
-                        style: Theme.of(context).textTheme.overline!.copyWith(
+                        item.name,
+                        style: Theme.of(context).textTheme.overline.copyWith(
                             color: Colors.black.withOpacity(0.7),
                             fontWeight: FontWeight.w600),
                       )
@@ -141,8 +136,8 @@ class TabCard extends StatelessWidget {
                 ),
                 item.name != null
                     ? Text(
-                        '${item.name}',
-                        style: Theme.of(context).textTheme.overline!.copyWith(
+                        item.name,
+                        style: Theme.of(context).textTheme.overline.copyWith(
                             color: Colors.black.withOpacity(0.7),
                             fontWeight: FontWeight.w600),
                       )
@@ -155,6 +150,6 @@ class TabCard extends StatelessWidget {
 
 class TabItem {
   String icon;
-  String? name;
-  TabItem({required this.icon, this.name});
+  String name;
+  TabItem({this.icon, this.name});
 }

@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:test/screens/contact.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:test/cubit/contact_cubit.dart';
+// import 'package:test/screens/contact.dart';
+import 'package:test/screens/router.dart';
 import 'package:test/styles/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(
+    router: AppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final AppRouter router;
+  const MyApp({Key key, this.router}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'App',
-      home: const ContactsScreen(),
+      onGenerateRoute: router.generateRoute,
       theme: theme(),
     );
   }

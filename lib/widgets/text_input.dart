@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 class TextInputCustom extends StatelessWidget {
   final String hintText;
-  final int? maxlines;
+  final int maxlines;
   final type;
-  const TextInputCustom(
-      {Key? key, required this.hintText, this.maxlines, required this.type})
+  const TextInputCustom({Key key, this.hintText, this.maxlines, this.type})
       : super(key: key);
 
   @override
@@ -13,7 +12,7 @@ class TextInputCustom extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
-        height: maxlines != null ? maxlines! * 35 : 35,
+        height: maxlines != null ? maxlines * 35 : 35,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             color: Colors.white,

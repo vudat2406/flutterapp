@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:test/constants/strings.dart';
 import 'package:test/widgets/allwidgets.dart';
-import 'package:test/screens/contact_detail.dart';
+// import 'package:test/screens/contact_detail.dart';
 import 'package:test/services/data.dart';
+
+import '../data/models/contact.dart';
 // import 'package:overlay_container/overlay_container.dart';
 
 class CardContact extends StatefulWidget {
-  final DataContact data;
-  const CardContact({Key? key, required this.data}) : super(key: key);
+  // final DataContact data;
+  final Contact contact;
+  const CardContact(this.contact);
 
   @override
   State<CardContact> createState() => _CardContactState();
@@ -14,6 +18,7 @@ class CardContact extends StatefulWidget {
 
 class _CardContactState extends State<CardContact> {
   bool isShowOption = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,16 +26,18 @@ class _CardContactState extends State<CardContact> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => ContactDetail(
-                              data: widget.data,
-                            )));
-              },
+            InkWell(
+              onTap: () => Navigator.pushNamed(
+                context, CONTACT_DETAIL,
+                arguments: widget.contact,
+
+                // MaterialPageRoute(
+                //     builder: (_) => ContactDetail(
+                //           data: widget.data,
+                //         )),
+              ),
               child: Container(
+                // key: Key("${widget.contact.id}"),
                 height: 65,
                 decoration: BoxDecoration(
                     color: isShowOption
@@ -48,14 +55,16 @@ class _CardContactState extends State<CardContact> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    // Text(widget.contact.contactName),
                     Expanded(
                         flex: 7,
                         child: Row(children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 7.5),
                             child: CircleAvatar(
-                                backgroundImage:
-                                    AssetImage(widget.data.avatarImage)),
+                                // backgroundImage:
+                                //     AssetImage(widget.data.avatarImage)
+                                ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 5),
@@ -64,22 +73,28 @@ class _CardContactState extends State<CardContact> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  widget.data.name,
+                                  widget.contact.contactName,
                                   style: Theme.of(context).textTheme.headline5,
                                 ),
                                 Row(
                                   children: [
-                                    Text(
-                                      widget.data.phoneNumber,
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
-                                    ),
+                                    widget.contact.contactPhoneNum1 != null
+                                        ? Text(
+                                            widget.contact.contactPhoneNum1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2,
+                                          )
+                                        : Text("none"),
                                     const Text('  |  '),
-                                    Text(
-                                      widget.data.email,
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
-                                    )
+                                    widget.contact.contactEmailAdr1 != null
+                                        ? Text(
+                                            widget.contact.contactEmailAdr1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2,
+                                          )
+                                        : Text("none")
                                   ],
                                 )
                               ],
@@ -106,34 +121,6 @@ class _CardContactState extends State<CardContact> {
                 ),
               ),
             ),
-            // OverlayContainer(
-            //     show: isShowOption,
-            //     // Let's position this overlay to the right of the button.
-            //     position: const OverlayContainerPosition(
-            //       // Left position.
-            //       105,
-            //       // Bottom position.
-            //       0,
-            //     ),
-            //     // The content inside the overlay.
-            //     child: Container(
-            //       width: 262,
-            //       height: 65,
-            //       margin: const EdgeInsets.only(top: 5),
-            //       decoration: BoxDecoration(
-            //           color: const Color.fromRGBO(242, 249, 205, 1),
-            //           borderRadius: BorderRadius.circular(5)),
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //         children: const [
-            //           CardItem(
-            //               image: 'assets/images/Asset3.png',
-            //               name: 'Appointments'),
-            //           CardItem(image: 'assets/images/d2.png', name: 'Notes'),
-            //           CardItem(image: 'assets/images/d3.png', name: 'Documents')
-            //         ],
-            //       ),
-            //     ))
             isShowOption
                 ? Container(
                     width: 262,

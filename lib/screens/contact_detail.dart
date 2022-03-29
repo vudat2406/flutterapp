@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:test/services/data.dart';
 import 'package:test/widgets/allwidgets.dart';
 
-class ContactDetail extends StatefulWidget {
-  final DataContact data;
+import '../data/models/contact.dart';
 
-  const ContactDetail({Key? key, required this.data}) : super(key: key);
+class ContactDetail extends StatefulWidget {
+  // final DataContact data;
+  final Contact contact;
+  const ContactDetail({Key key, this.contact}) : super(key: key);
 
   @override
   State<ContactDetail> createState() => _ContactDetailState();
@@ -105,27 +107,37 @@ class _ContactDetailState extends State<ContactDetail> {
               const SizedBox(
                 height: 30,
               ),
-              NameSession(backgroundColor: backgroundColor, data: widget.data),
+              // Text(widget.contact.contactName),
+              NameSession(
+                  backgroundColor: backgroundColor, contact: widget.contact),
               const SizedBox(
                 height: 15,
               ),
-              PhoneAndEmailSession(backgroundColor: backgroundColor),
+              PhoneAndEmailSession(
+                backgroundColor: backgroundColor,
+                contact: widget.contact,
+              ),
               const SizedBox(
                 height: 15,
               ),
               AddressSession(
                 backgroundColor: backgroundColor,
+                contact: widget.contact,
               ),
               const SizedBox(
                 height: 15,
               ),
               TaxSession(
                 backgroundColor: backgroundColor,
+                contact: widget.contact,
               ),
               const SizedBox(
                 height: 15,
               ),
-              SearchTagsSession(backgroundColor: backgroundColor),
+              SearchTagsSession(
+                backgroundColor: backgroundColor,
+                contact: widget.contact,
+              ),
               const SizedBox(
                 height: 15,
               ),
@@ -171,10 +183,11 @@ class _ContactDetailState extends State<ContactDetail> {
 
 class PhoneAndEmailSession extends StatelessWidget {
   const PhoneAndEmailSession({
-    Key? key,
-    required this.backgroundColor,
+    Key key,
+    this.backgroundColor,
+    this.contact,
   }) : super(key: key);
-
+  final Contact contact;
   final Color backgroundColor;
 
   @override
@@ -187,18 +200,24 @@ class PhoneAndEmailSession extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             TextHeader(text: 'Phone Number:'),
             TextInputCustom(
-              hintText: 'Home Phone',
+              hintText: contact.contactPhoneNum1 != null
+                  ? contact.contactPhoneNum1
+                  : "none",
               type: TextInputType.phone,
             ),
             TextInputCustom(
-              hintText: 'Mobile Phone',
+              hintText: contact.contactPhoneNum2 != null
+                  ? contact.contactPhoneNum2
+                  : "none",
               type: TextInputType.phone,
             ),
             TextInputCustom(
-              hintText: 'Work Phone',
+              hintText: contact.contactPhoneNum3 != null
+                  ? contact.contactPhoneNum3
+                  : "none",
               type: TextInputType.phone,
             ),
             SizedBox(
@@ -206,11 +225,15 @@ class PhoneAndEmailSession extends StatelessWidget {
             ),
             TextHeader(text: 'Email Address:'),
             TextInputCustom(
-              hintText: 'Primary Email',
+              hintText: contact.contactEmailAdr1 != null
+                  ? contact.contactEmailAdr1
+                  : "none",
               type: TextInputType.emailAddress,
             ),
             TextInputCustom(
-              hintText: 'Alternative Email',
+              hintText: contact.contactEmailAdr2 != null
+                  ? contact.contactEmailAdr2
+                  : "none",
               type: TextInputType.emailAddress,
             ),
           ],
@@ -222,10 +245,11 @@ class PhoneAndEmailSession extends StatelessWidget {
 
 class SearchTagsSession extends StatelessWidget {
   const SearchTagsSession({
-    Key? key,
-    required this.backgroundColor,
+    Key key,
+    this.backgroundColor,
+    this.contact,
   }) : super(key: key);
-
+  final Contact contact;
   final Color backgroundColor;
 
   @override
@@ -254,10 +278,11 @@ class SearchTagsSession extends StatelessWidget {
 
 class TaxSession extends StatelessWidget {
   const TaxSession({
-    Key? key,
-    required this.backgroundColor,
+    Key key,
+    this.backgroundColor,
+    this.contact,
   }) : super(key: key);
-
+  final Contact contact;
   final Color backgroundColor;
 
   @override
@@ -270,10 +295,11 @@ class TaxSession extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             TextHeader(text: 'Tax Region:'),
             TextInputCustom(
-              hintText: 'Tax Region',
+              hintText:
+                  contact.taxRegionId != null ? contact.taxRegionId : "none",
               type: TextInputType.text,
             ),
             SizedBox(
@@ -281,7 +307,8 @@ class TaxSession extends StatelessWidget {
             ),
             TextHeader(text: 'Tax Refference:'),
             TextInputCustom(
-              hintText: 'Tax Refference Code',
+              hintText:
+                  contact.taxReference != null ? contact.taxReference : "none",
               type: TextInputType.text,
             ),
             SizedBox(
@@ -289,7 +316,7 @@ class TaxSession extends StatelessWidget {
             ),
             TextHeader(text: 'Invoice Terms:'),
             TextInputCustom(
-              hintText: 'Terms and Conditions',
+              hintText: contact.terms != null ? contact.terms : "none",
               type: TextInputType.text,
             ),
             SizedBox(
@@ -297,7 +324,7 @@ class TaxSession extends StatelessWidget {
             ),
             TextHeader(text: 'Invoice Note:'),
             TextInputCustom(
-              hintText: 'Notes to the Customer',
+              hintText: contact.notes != null ? contact.notes : "none",
               maxlines: 2,
               type: TextInputType.text,
             ),
@@ -310,12 +337,13 @@ class TaxSession extends StatelessWidget {
 
 class AddressSession extends StatelessWidget {
   const AddressSession({
-    Key? key,
-    required this.backgroundColor,
+    Key key,
+    this.backgroundColor,
+    this.contact,
   }) : super(key: key);
 
   final Color backgroundColor;
-
+  final Contact contact;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -326,30 +354,38 @@ class AddressSession extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             TextHeader(text: 'Address:'),
             TextInputCustom(
-              hintText: 'Address Line 1',
+              hintText:
+                  contact.contactAdr1 != null ? contact.contactAdr1 : "none",
               type: TextInputType.streetAddress,
             ),
             TextInputCustom(
-              hintText: 'Address Line 2',
+              hintText:
+                  contact.contactAdr2 != null ? contact.contactAdr2 : "none",
               type: TextInputType.streetAddress,
             ),
             TextInputCustom(
-              hintText: 'Street',
+              hintText:
+                  contact.contactAdr3 != null ? contact.contactAdr3 : "none",
               type: TextInputType.streetAddress,
             ),
             TextInputCustom(
-              hintText: 'Ward',
+              hintText:
+                  contact.contactAdr4 != null ? contact.contactAdr4 : "none",
               type: TextInputType.streetAddress,
             ),
             TextInputCustom(
-              hintText: 'City/ Region',
+              hintText: contact.contactAdrZip != null
+                  ? contact.contactAdrZip
+                  : "none",
               type: TextInputType.streetAddress,
             ),
             TextInputCustom(
-              hintText: 'Country',
+              hintText: contact.contactAdrCountry != null
+                  ? contact.contactAdrCountry
+                  : "none",
               type: TextInputType.streetAddress,
             ),
             TextInputCustom(
@@ -365,13 +401,13 @@ class AddressSession extends StatelessWidget {
 
 class NameSession extends StatelessWidget {
   const NameSession({
-    Key? key,
-    required this.backgroundColor,
-    required this.data,
+    Key key,
+    this.backgroundColor,
+    this.contact,
   }) : super(key: key);
 
   final Color backgroundColor;
-  final DataContact data;
+  final Contact contact;
 
   @override
   Widget build(BuildContext context) {
@@ -389,7 +425,8 @@ class NameSession extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: Stack(clipBehavior: Clip.none, children: [
-                  Text(data.name, style: Theme.of(context).textTheme.headline1),
+                  Text(contact.contactName,
+                      style: Theme.of(context).textTheme.headline1),
                   Positioned(
                       right: -20,
                       top: 4,
@@ -423,7 +460,9 @@ class NameSession extends StatelessWidget {
           top: -37,
           width: 74,
           height: 74,
-          child: CircleAvatar(backgroundImage: AssetImage(data.avatarImage)),
+          child: CircleAvatar(
+              // backgroundImage: AssetImage(data.avatarImage)
+              ),
         ),
         Positioned(
             left: MediaQuery.of(context).size.width / 2,

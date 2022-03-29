@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class CardItem extends StatelessWidget {
   final String image;
   final String name;
-  const CardItem({Key? key, required this.image, required this.name})
-      : super(key: key);
+  const CardItem({Key key, this.image, this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

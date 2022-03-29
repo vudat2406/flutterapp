@@ -4,10 +4,10 @@ class DataContact {
   String phoneNumber;
   String email;
   DataContact({
-    required this.avatarImage,
-    required this.name,
-    required this.phoneNumber,
-    required this.email,
+    this.avatarImage,
+    this.name,
+    this.phoneNumber,
+    this.email,
   });
   static List<DataContact> datacontacts = [
     DataContact(
