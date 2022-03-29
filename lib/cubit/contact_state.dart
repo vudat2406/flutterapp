@@ -10,3 +10,10 @@ class ContactLoaded extends ContactState {
 
   ContactLoaded({this.contacts});
 }
+
+class ContactLoading extends ContactState {
+  final List<Contact> oldContacts;
+  final bool isFirstFetch;
+
+  ContactLoading(this.oldContacts, {this.isFirstFetch = false});
+}

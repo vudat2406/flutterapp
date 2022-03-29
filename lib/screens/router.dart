@@ -22,7 +22,7 @@ class AppRouter {
             builder: (_) => BlocProvider(
                   create: (BuildContext context) =>
                       ContactCubit(repository: repository),
-                  child: const ContactsScreen(),
+                  child: ContactsScreen(),
                 ));
       case CONTACT_DETAIL:
         final contact = settings.arguments as Contact;

@@ -37,7 +37,7 @@ class _CardContactState extends State<CardContact> {
                 //         )),
               ),
               child: Container(
-                // key: Key("${widget.contact.id}"),
+                key: Key("${widget.contact.id}"),
                 height: 65,
                 decoration: BoxDecoration(
                     color: isShowOption
