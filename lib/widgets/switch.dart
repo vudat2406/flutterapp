@@ -5,8 +5,7 @@ class SwitchCustom extends StatefulWidget {
   bool value;
   final String name;
 
-  SwitchCustom({Key? key, required this.value, required this.name})
-      : super(key: key);
+  SwitchCustom({Key key, this.value, this.name}) : super(key: key);
 
   @override
   State<SwitchCustom> createState() => _SwitchCustomState();

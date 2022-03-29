@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Apptopbar extends StatelessWidget with PreferredSizeWidget {
-  const Apptopbar({Key? key}) : super(key: key);
+  const Apptopbar({Key key}) : super(key: key);
   final int annouceCount = 15;
 
   @override

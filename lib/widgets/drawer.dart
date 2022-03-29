@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class DrawerItem extends StatelessWidget {
   final String image;
   final String name;
-  const DrawerItem({Key? key, required this.image, required this.name})
-      : super(key: key);
+  const DrawerItem({Key key, this.image, this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
